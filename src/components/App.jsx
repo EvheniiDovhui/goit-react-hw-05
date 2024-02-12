@@ -1,27 +1,30 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import styles from './App.module.css';
-
-const HomePage = lazy(() => import('./HomePage/HomePage'));
-const MoviesPage = lazy(() => import('./MoviesPage/MoviesPage'));
-const MovieDetailsPage = lazy(() =>
-  import('./MovieDetailsPage/MovieDetailsPage')
-);
-const MovieCast = lazy(() => import('./MovieCast/MovieCast'));
-const MovieReviews = lazy(() => import('./MovieReviews/MovieReviews'));
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Додано `Routes`
+import { Navbar } from './Navbar/Navbar';
+import HomePage from './HomePage/HomePage';
+import MoviesPage from './MoviesPage/MoviesPage';
+import NotFoundPage from './NotFoundPage/NotFoundPage';
+import MoviesDetailsPage from './MovieDetailsPage/MovieDetailsPage';
+import MoviesCast from './MovieCast/MovieCast';
+import MovieReviews from './MovieReviews/MovieReviews';
 
 const App = () => {
   return (
     <Router>
-      <div className={styles.app}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/movies" component={MoviesPage} />
-            <Route path="/movies/:movieId" component={MovieDetailsPage} />
-          </Switch>
-        </Suspense>
+      <div>
+        <Navbar />
+        <Routes>
+          {' '}
+          {/* Додано `Routes` */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:moviesId" element={<MoviesDetailsPage />}>
+            <Route path="cast" element={<MoviesCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>{' '}
+        {/* Додано закриваючий тег `Routes` */}
       </div>
     </Router>
   );
