@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Додано `Routes`
-import { Navbar } from './Navbar/Navbar';
-import HomePage from './HomePage/HomePage';
-import MoviesPage from './MoviesPage/MoviesPage';
-import NotFoundPage from './NotFoundPage/NotFoundPage';
-import MoviesDetailsPage from './MovieDetailsPage/MovieDetailsPage';
-import MoviesCast from './MovieCast/MovieCast';
-import MovieReviews from './MovieReviews/MovieReviews';
+import Navbar from './Navbar/Navbar';
+import HomePage from '../pages/HomePage/HomePage';
+import MoviesPage from '../pages/MoviesPage/MoviesPage';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import MoviesDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
+import MoviesCast from '../components/MovieCast/MovieCast';
+import MovieReviews from '../components/MovieReviews/MovieReviews';
 
 const App = () => {
   return (
@@ -15,7 +15,6 @@ const App = () => {
         <Navbar />
         <Routes>
           {' '}
-          {/* Додано `Routes` */}
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movies/:moviesId" element={<MoviesDetailsPage />}>
@@ -24,7 +23,6 @@ const App = () => {
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>{' '}
-        {/* Додано закриваючий тег `Routes` */}
       </div>
     </Router>
   );

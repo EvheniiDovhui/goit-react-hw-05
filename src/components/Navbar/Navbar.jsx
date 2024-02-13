@@ -1,17 +1,22 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
+import clsx from 'clsx';
+import css from './Navbar.module.css';
 
-export const Navbar = () => {
+const buildLinkClass = ({ isActive }) => {
+  return clsx(css.link, isActive ? css.active : null);
+};
+
+const Navbar = () => {
   return (
-    <nav>
-      {/* Navbar content goes here */}
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/movies">Movies</a>
-        </li>
-      </ul>
+    <nav className={css.nav}>
+      <NavLink to="/" className={buildLinkClass}>
+        Home
+      </NavLink>
+      <NavLink to="/movies" className={buildLinkClass}>
+        Movies
+      </NavLink>
     </nav>
   );
 };
+
+export default Navbar;

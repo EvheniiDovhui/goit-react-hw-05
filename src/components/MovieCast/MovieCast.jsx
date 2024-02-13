@@ -1,37 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import { getMoviesCast } from '../../Api';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import styles from './MovieCast.module.css';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const MovieCast = () => {
-  const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
+export default function MoviesCast() {
+  const { moviesId } = useParams();
+  const [casts, setCasts] = useState(null);
+  const [error, setError] = useState(false);
+
+  const defaultImg =
+    'https://img.freepik.com/premium-vector/actor-holding-star-trophy-cartoon-icon_24908-10408.jpg';
 
   useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=YOUR_API_KEY`
-      )
-      .then(response => {
-        setCast(response.data.cast);
-      })
-      .catch(error => {
-        console.error('Error fetching movie cast:', error);
-      });
-  }, [movieId]);
-
+    if (!moviesId) return;
+    async function fetchCast() {
+      try {
+        const fetchedCast = await getMoviesCast(moviesId);
+        setCasts(fetchedCast);
+      } catch (error) {
+        if (error.code !== 'ERR_CANCELED') {
+          setError(true);
+        }
+      }
+    }
+    fetchCast();
+  }, [moviesId]);
   return (
-    <div className={styles.container}>
-      <h3 className={styles.title}>Cast</h3>
-      <ul className={styles.castList}>
-        {cast.map(actor => (
-          <li key={actor.id} className={styles.actor}>
-            {actor.name}
-          </li>
-        ))}
-      </ul>
+    <div>
+      {error && <ErrorMessage />}
+      {casts && (
+        <ul>
+          {casts.map(cast => (
+            <li key={cast.id}>
+              <img
+                src={
+                  cast.profile_path
+                    ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
+                    : defaultImg
+                }
+                width={250}
+                alt={cast.title}
+              />
+              <h4>{cast.name}</h4>
+              <p>
+                <b>Character: </b>
+                {cast.character}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
-};
-
-export default MovieCast;
+}
