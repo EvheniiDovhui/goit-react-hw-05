@@ -3,8 +3,9 @@ import { BiSolidCameraMovie } from 'react-icons/bi';
 
 const PageTitle = () => {
   return (
-    <h1 className={css.title}>
-      <BiSolidCameraMovie className={css.icon} /> Trending today
+    <h1 className={css.titleContainer}>
+      <BiSolidCameraMovie className={css.icon} />
+      <span className={css.title}>Trending today</span>
     </h1>
   );
 };

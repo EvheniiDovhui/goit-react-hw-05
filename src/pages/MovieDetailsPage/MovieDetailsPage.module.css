@@ -4,14 +4,46 @@
   padding: 20px;
 }
 
-.poster {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
+.error {
+  color: #ff0000;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.loading {
-  text-align: center;
-  font-size: 18px;
+.backLink {
+  display: inline-block;
+  color: #007bff;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.additionalInfo {
   margin-top: 20px;
+}
+
+.additionalInfo h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.additionalInfo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.additionalInfo li {
+  margin-bottom: 10px;
+}
+
+.additionalInfo li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.additionalInfo li a:hover {
+  text-decoration: underline;
 }

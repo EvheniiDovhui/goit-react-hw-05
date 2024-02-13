@@ -1,0 +1,12 @@
+.cardLink {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+.cardLink:hover {
+  background-color: #f0f0f0;
+}

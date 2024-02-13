@@ -2,6 +2,7 @@ import { getMoviesCast } from '../../Api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import css from './MovieCast.module.css';
 
 export default function MoviesCast() {
   const { moviesId } = useParams();
@@ -26,24 +27,24 @@ export default function MoviesCast() {
     fetchCast();
   }, [moviesId]);
   return (
-    <div>
-      {error && <ErrorMessage />}
+    <div className={css.container}>
+      {error && <ErrorMessage className={css.error} />}
       {casts && (
-        <ul>
+        <ul className={css.castList}>
           {casts.map(cast => (
-            <li key={cast.id}>
+            <li key={cast.id} className={css.castItem}>
               <img
                 src={
                   cast.profile_path
                     ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
                     : defaultImg
                 }
-                width={250}
+                className={css.castImage}
                 alt={cast.title}
               />
-              <h4>{cast.name}</h4>
+              <h4 className={css.castName}>{cast.name}</h4>
               <p>
-                <b>Character: </b>
+                <b className={css.castCharacter}>Character: </b>
                 {cast.character}
               </p>
             </li>

@@ -4,6 +4,7 @@ import Filter from '../../components/Filter/Filter';
 import { useSearchParams, useParams } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import css from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -37,10 +38,12 @@ export default function MoviesPage() {
   }, [query]);
 
   return (
-    <div>
+    <div className={css.container}>
       <Filter value={query} onChange={changeFilter} />
-      {error && <ErrorMessage />}
-      {movies.length > 0 && <MovieList items={movies} />}
+      {error && <ErrorMessage className={css.error} />}
+      {movies.length > 0 && (
+        <MovieList items={movies} className={css.movieList} />
+      )}
     </div>
   );
 }

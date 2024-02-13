@@ -9,7 +9,7 @@ const buildLinkClass = ({ isActive }) => {
 const Navbar = () => {
   return (
     <nav className={css.nav}>
-      <NavLink to="/" className={buildLinkClass}>
+      <NavLink exact={true.toString()} to="/" className={buildLinkClass}>
         Home
       </NavLink>
       <NavLink to="/movies" className={buildLinkClass}>

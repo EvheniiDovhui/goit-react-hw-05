@@ -30,18 +30,21 @@ export default function MoviesDetailsPage() {
     fetchData();
   }, [moviesId]);
   return (
-    <div className={css.movies}>
-      <div className={css.moviesPhoto}>
-        {error && <ErrorMessage />}
+    <div className={css.container}>
+      <div>
+        {error && <ErrorMessage className={css.error} />}
         {}
         {backLink && (
-          <BackLink href={backLinkRef.current ?? '/movies'}>
+          <BackLink
+            href={backLinkRef.current ?? '/movies'}
+            className={css.backLink}
+          >
             Back to all movies
           </BackLink>
         )}
         {movieData && <MoviesDetailsList movieData={movieData} />}
       </div>
-      <div className={css.moviesInfo}>
+      <div className={css.additionalInfo}>
         <h3>Additional information</h3>
         <ul>
           <li>

@@ -3,6 +3,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import { getMovies } from '../../Api';
 import PageTitle from '../PageTitle/PageTitle';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import css from './HomePage.module.css';
 
 export default function HomePage() {
   const [populars, setPopulars] = useState([]);
@@ -28,9 +29,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className={css.container}>
       <PageTitle>Trending today</PageTitle>
-      {error && <ErrorMessage />}
+      {error && <ErrorMessage className={css.error} />}
       {populars.length > 0 && <MovieList items={populars} />}
     </div>
   );

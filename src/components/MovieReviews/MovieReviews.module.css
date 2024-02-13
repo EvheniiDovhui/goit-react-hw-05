@@ -11,25 +11,21 @@
   margin-top: 20px;
 }
 
-.castList {
+.reviewsList {
   list-style-type: none;
   padding: 0;
 }
 
-.castItem {
+.reviewItem {
   margin-bottom: 20px;
 }
 
-.castImage {
-  width: 250px;
-  height: auto;
-}
-
-.castName {
+.author {
   font-size: 20px;
   font-weight: bold;
 }
 
-.castCharacter {
-  font-weight: bold;
+.content {
+  font-size: 16px;
+  line-height: 1.6;
 }

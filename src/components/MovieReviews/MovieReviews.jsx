@@ -2,6 +2,7 @@ import { getMoviesReviews } from '../../Api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import css from './MovieReviews.module.css';
 
 export default function MovieReviews() {
   const { moviesId } = useParams();
@@ -24,14 +25,14 @@ export default function MovieReviews() {
   }, [moviesId]);
 
   return (
-    <div>
-      {error && <ErrorMessage />}
+    <div className={css.container}>
+      {error && <ErrorMessage className={css.error} />}
       {reviews && (
-        <ul>
+        <ul className={css.reviewsList}>
           {reviews.map(review => (
-            <li key={review.id}>
-              <h2>Author: {review.author}</h2>
-              <p>{review.content}</p>
+            <li key={review.id} className={css.reviewItem}>
+              <h2 className={css.author}>Author: {review.author}</h2>
+              <p className={css.content}>{review.content}</p>
             </li>
           ))}
         </ul>
